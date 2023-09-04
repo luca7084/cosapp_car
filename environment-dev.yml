@@ -1,0 +1,10 @@
+name: cosapp_car
+channels:
+  - conda-forge
+dependencies:
+  - python
+  - pytest
+  - flake8
+  - isort
+  - black
+  - pre-commit
