@@ -3,3 +3,4 @@ flake8
 isort
 black
 pre-commit
+cosapp==0.15.0
