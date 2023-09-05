@@ -1,5 +1,6 @@
 from cosapp.base import System
 
+
 class Tank(System):
     """A simple model of a fuel tank.
 
