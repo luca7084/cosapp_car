@@ -2,6 +2,24 @@ from cosapp.base import System
 
 
 class Wheels(System):
+    """Simple model of a set of 4 wheels.
+
+    Inputs
+    ------
+    M [N*m]: float,
+        torque
+
+    Outputs
+    ------
+    omega [1/s]: float,
+        wheels' angular speed
+    weight [kg]: float,
+        weight
+    force [N]: float,
+        friction force acting over the wheels
+
+    """
+
     def setup(self):
 
         # Geometric parameters

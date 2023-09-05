@@ -4,6 +4,18 @@ from cosapp_car.systems import Dynamics, Engine, Tank, Wheels
 
 
 class Car(System):
+    """A simple model of a car.
+
+    Inputs
+    ------
+
+    Outputs
+    ------
+    a [m/s**2]: float,
+        car acceleration
+
+    """
+
     def setup(self):
 
         self.add_child(Tank("tank"))
@@ -14,7 +26,8 @@ class Car(System):
                 "dyn",
                 forces=["friction"],
                 weights=["weight_wheels", "weight_engine", "weight_tank"],
-            )
+            ),
+            pulling=["a"],
         )
 
         self.connect(self.tank.outwards, self.engine.inwards, {"w_out": "w_in"})
