@@ -15,6 +15,7 @@ class TestCar:
         sys = Car("sys")
 
         sys.tank.w_out_max = 1.0
+        sys.acel.delta = 1.0
 
         sys.add_driver(NonLinearSolver("solver", tol=10 ** (-6)))
         sys.run_drivers()
@@ -30,6 +31,7 @@ class TestCar:
 
         sys.tank.w_out_max = 1.0
         sys.tank.weight_p = 5.0
+        sys.acel.delta = 1.0
 
         driver = sys.add_driver(RungeKutta(order=4, dt=1.0))
         solver = driver.add_child(NonLinearSolver("solver", tol=10 ** (-5)))
