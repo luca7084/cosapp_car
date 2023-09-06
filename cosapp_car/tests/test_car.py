@@ -23,7 +23,7 @@ class TestCar:
         np.testing.assert_allclose(sys.dyn.a, 5 / 8, atol=10 ** (-4))
         np.testing.assert_allclose(sys.dyn.weight, 6.0, atol=10 ** (-4))
         np.testing.assert_allclose(sys.wheels.alpha, 5 / 16, atol=10 ** (-4))
-        np.testing.assert_allclose(sys.wheels.F, 15 / 16, atol=10 ** (-4))
+        np.testing.assert_allclose(sys.wheels.force, 15 / 4, atol=10 ** (-4))
 
     def test_rk(self):
 
@@ -42,4 +42,4 @@ class TestCar:
         np.testing.assert_allclose(sys.dyn.a, 5 / 8, atol=10 ** (-4))
         np.testing.assert_allclose(sys.dyn.weight, 6.0, atol=10 ** (-4))
         np.testing.assert_allclose(sys.wheels.alpha, 5 / 16, atol=10 ** (-4))
-        np.testing.assert_allclose(sys.wheels.F, 15 / 16, atol=10 ** (-4))
+        np.testing.assert_allclose(sys.wheels.force, 15 / 4, atol=10 ** (-4))

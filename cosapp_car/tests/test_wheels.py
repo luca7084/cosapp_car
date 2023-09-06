@@ -20,4 +20,4 @@ class TestWheels:
         sys.add_driver(NonLinearSolver("solver", tol=10 ** (-6)))
         sys.run_drivers()
 
-        np.testing.assert_allclose(sys.F, 2.0, atol=10 ** (-4))
+        np.testing.assert_allclose(sys.force, 8.0, atol=10 ** (-4))
