@@ -28,7 +28,7 @@ class Engine(System):
 
         # Outputs
         self.add_outward("M", 0.0, desc="Produced torque", unit="N*m")
-        self.add_outward("weight", 2.0, desc="Engine weight", unit="kg")
+        self.add_outward("weight", 1.0, desc="Engine weight", unit="kg")
 
     def compute(self):
 
