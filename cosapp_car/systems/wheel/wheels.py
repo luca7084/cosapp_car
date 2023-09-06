@@ -9,15 +9,19 @@ class Wheels(System):
     ------
     M [N*m]: float,
         torque
+    lock: Boolean,
+        whether the wheels are locked or not
 
     Outputs
     ------
+    alpha [1/s**2]: float,
+        wheels' angular acceleration
     omega [1/s]: float,
         wheels' angular speed
     weight [kg]: float,
         weight
     force [N]: float,
-        friction force acting over the wheels
+        friction force acting on the wheels
 
     """
 

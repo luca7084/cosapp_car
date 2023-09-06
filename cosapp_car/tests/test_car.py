@@ -1,5 +1,6 @@
 import numpy as np
 from cosapp.drivers import NonLinearSolver, RungeKutta
+from cosapp.recorders import DataFrameRecorder
 
 from cosapp_car.systems import Car
 
@@ -14,6 +15,7 @@ class TestCar:
 
         sys = Car("sys")
 
+        sys.tank.weight_p = 1.0
         sys.tank.w_out_max = 1.0
         sys.acel.delta = 1.0
 
@@ -35,7 +37,7 @@ class TestCar:
 
         driver = sys.add_driver(RungeKutta(order=4, dt=1.0))
         solver = driver.add_child(NonLinearSolver("solver", tol=10 ** (-5)))
-        driver.time_interval = (0, 5)
+        driver.time_interval = (0, 4)
 
         sys.run_drivers()
 
@@ -54,7 +56,7 @@ class TestCar:
 
         driver = sys.add_driver(RungeKutta(order=4, dt=1.0))
         solver = driver.add_child(NonLinearSolver("solver", tol=10 ** (-5)))
-        driver.time_interval = (0, 10)
+        driver.time_interval = (0, 8)
 
         sys.run_drivers()
 
@@ -70,7 +72,9 @@ class TestCar:
 
         driver = sys.add_driver(RungeKutta(order=4, dt=0.2))
         solver = driver.add_child(NonLinearSolver("solver", tol=10 ** (-5)))
-        driver.time_interval = (10, 20)
+        driver.time_interval = (8, 20)
+        stop = "v == 0."
+        driver.set_scenario(stop=stop)
 
         sys.run_drivers()
 
@@ -78,3 +82,20 @@ class TestCar:
         np.testing.assert_allclose(sys.dyn.weight, 6.0, atol=10 ** (-4))
         np.testing.assert_allclose(sys.wheels.alpha, 0.0, atol=10 ** (-4))
         np.testing.assert_allclose(sys.wheels.force, 0.0, atol=10 ** (-4))
+
+        sys.drivers.clear()
+
+        sys.brakes.press = False
+        sys.acel.delta = 1.0
+        sys.tank.weight_p = 5.0
+
+        driver = sys.add_driver(RungeKutta(order=4, dt=1.0))
+        solver = driver.add_child(NonLinearSolver("solver", tol=10 ** (-5)))
+        driver.time_interval = (sys.time, sys.time + 4)
+
+        sys.run_drivers()
+
+        np.testing.assert_allclose(sys.dyn.a, 5 / 8, atol=10 ** (-4))
+        np.testing.assert_allclose(sys.dyn.weight, 6.0, atol=10 ** (-4))
+        np.testing.assert_allclose(sys.wheels.alpha, 5 / 16, atol=10 ** (-4))
+        np.testing.assert_allclose(sys.wheels.force, 15 / 4, atol=10 ** (-4))
