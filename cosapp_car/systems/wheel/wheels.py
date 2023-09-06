@@ -1,6 +1,6 @@
 from cosapp.base import System
 from cosapp.multimode import Event
-import numpy as np
+
 
 class Wheels(System):
     """Simple model of a set of 4 wheels.
@@ -34,7 +34,7 @@ class Wheels(System):
         self.add_inward("a", 0.0, desc="Acceleration", unit="m/s**2")
         self.add_inward("lock", False, desc="Whether the wheels are locked or not")
         self.add_inward("normal", 0.0, desc="Normal force", unit="N")
-        self.add_inward("v", 0., desc="Velocity", unit='m/s')
+        self.add_inward("v", 0.0, desc="Velocity", unit="m/s")
 
         # Outputs
         self.add_outward("alpha", 0.0, desc="Angular acceleration", unit="1/s**2")
@@ -56,11 +56,11 @@ class Wheels(System):
         self.alpha = (self.a / self.R) * (1 - self.lock)
 
         rot_fric = (self.M - 2 * self.mw * self.R**2 * self.alpha) / self.R
-        slid_fric = - self.mu * self.normal * self.moving
+        slid_fric = -self.mu * self.normal * self.moving
         self.force = rot_fric * (1 - self.lock) + slid_fric * self.lock
 
         self.omega = self.w
-        self.w *= (1 - self.lock)
+        self.w *= 1 - self.lock
 
     def transition(self):
 

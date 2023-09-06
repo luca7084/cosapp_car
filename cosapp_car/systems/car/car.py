@@ -22,7 +22,7 @@ class Car(System):
         self.add_child(Brakes("brakes"))
         self.add_child(Tank("tank"))
         self.add_child(Engine("engine"))
-        self.add_child(Wheels("wheels"), pulling=['v'])
+        self.add_child(Wheels("wheels"), pulling=["v"])
         self.add_child(
             Dynamics(
                 "dyn",
@@ -45,5 +45,5 @@ class Car(System):
 
         self.connect(self.dyn.outwards, self.wheels.inwards, ["a", "normal"])
 
-        self.add_transient('v', der='a', desc="Car velocity")
-        self.add_transient('x', der='v', desc="Car position")
+        self.add_transient("v", der="a", desc="Car velocity")
+        self.add_transient("x", der="v", desc="Car position")

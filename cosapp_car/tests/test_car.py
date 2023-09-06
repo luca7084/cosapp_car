@@ -66,7 +66,7 @@ class TestCar:
         sys.drivers.clear()
 
         sys.brakes.press = True
-        sys.acel.delta = 0.
+        sys.acel.delta = 0.0
 
         driver = sys.add_driver(RungeKutta(order=4, dt=0.2))
         solver = driver.add_child(NonLinearSolver("solver", tol=10 ** (-5)))
@@ -74,7 +74,7 @@ class TestCar:
 
         sys.run_drivers()
 
-        np.testing.assert_allclose(sys.dyn.a, 0., atol=10 ** (-4))
+        np.testing.assert_allclose(sys.dyn.a, 0.0, atol=10 ** (-4))
         np.testing.assert_allclose(sys.dyn.weight, 6.0, atol=10 ** (-4))
-        np.testing.assert_allclose(sys.wheels.alpha, 0., atol=10 ** (-4))
-        np.testing.assert_allclose(sys.wheels.force, 0., atol=10 ** (-4))
+        np.testing.assert_allclose(sys.wheels.alpha, 0.0, atol=10 ** (-4))
+        np.testing.assert_allclose(sys.wheels.force, 0.0, atol=10 ** (-4))

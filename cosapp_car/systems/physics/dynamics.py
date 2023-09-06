@@ -29,7 +29,7 @@ class Dynamics(System):
 
         self.add_property("forces", forces)
         self.add_property("weights", weights)
-        self.add_inward("g", 10., desc="Gravity", unit='m/s**2')
+        self.add_inward("g", 10.0, desc="Gravity", unit="m/s**2")
 
         self.add_outward("a", 0.0, desc="Acceleration", unit="m/s**2")
 
@@ -39,7 +39,7 @@ class Dynamics(System):
             self.add_inward(force, 0.0, desc=f"Force called {force}", unit="N")
 
         self.add_outward("force", 1.0, desc="Force", unit="N")
-        self.add_outward("normal", 1.0, desc="Normal force", unit='N')
+        self.add_outward("normal", 1.0, desc="Normal force", unit="N")
         self.add_outward("weight", 1.0, desc="Weight", unit="kg")
 
     def compute(self):
