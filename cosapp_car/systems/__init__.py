@@ -6,4 +6,4 @@ from cosapp_car.systems.wheel import Wheels
 
 from cosapp_car.systems.car import Car  # isort: skip
 
-__all__ = ["Accelerator", "Brakes", "Car", "Dynamics", "Engine", "SteeringWheel" , "Tank", "Wheels"]
+__all__ = ["Accelerator", "Brakes", "Car", "Dynamics", "Engine", "SteeringWheel", "Tank", "Wheels"]

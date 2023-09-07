@@ -35,7 +35,7 @@ class Car(System):
 
         self.connect(self.acel.outwards, self.tank.inwards, ["w_command"])
         self.connect(self.brakes.outwards, self.wheels.inwards, ["lock"])
-        self.connect(self.ster.outwards, self.wheels.inwards, ['phi'])
+        self.connect(self.ster.outwards, self.wheels.inwards, ["phi"])
         self.connect(self.tank.outwards, self.engine.inwards, {"w_out": "w_in"})
         self.connect(self.engine.outwards, self.wheels.inwards, ["M"])
 
