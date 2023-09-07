@@ -1,6 +1,6 @@
 from cosapp.base import System
 
-from cosapp_car.systems import Accelerator, Brakes, Dynamics, Engine, Tank, Wheels
+from cosapp_car.systems import Accelerator, Brakes, Dynamics, Engine, SteeringWheel, Tank, Wheels
 
 
 class Car(System):
@@ -20,6 +20,7 @@ class Car(System):
 
         self.add_child(Accelerator("acel"))
         self.add_child(Brakes("brakes"))
+        self.add_child(SteeringWheel("ster"))
         self.add_child(Tank("tank"))
         self.add_child(Engine("engine"))
         self.add_child(Wheels("wheels"), pulling=["v"])
@@ -34,6 +35,7 @@ class Car(System):
 
         self.connect(self.acel.outwards, self.tank.inwards, ["w_command"])
         self.connect(self.brakes.outwards, self.wheels.inwards, ["lock"])
+        self.connect(self.ster.outwards, self.wheels.inwards, ['phi'])
         self.connect(self.tank.outwards, self.engine.inwards, {"w_out": "w_in"})
         self.connect(self.engine.outwards, self.wheels.inwards, ["M"])
 

@@ -35,6 +35,7 @@ class Wheels(System):
 
         # inputs
         self.add_inward("M", 0.0, desc="External torque", unit="N*m")
+        self.add_inward("phi", 0., desc="Inclination", unit='')
         self.add_inward("a", 0.0, desc="Acceleration", unit="m/s**2")
         self.add_inward("lock", False, desc="Whether the wheels are locked or not")
         self.add_inward("normal", 0.0, desc="Normal force", unit="N")
